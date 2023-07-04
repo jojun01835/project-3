@@ -52,155 +52,208 @@ $(document).ready(function () {
     },
   });
 
-  // 초기에 첫 번째 메뉴 항목에 강조 효과를 추가하고 "-"을 추가합니다.
-  $(".left_menu ul li:first-child a").addClass("active").prepend("- ");
+  var swiper1 = new Swiper(".mySwiper1", {
+    slidesPerView: 2,
+    pagination: {
+      type: "fraction",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    on: {
+      init: function () {
+        var swiper = this;
+        var activeSlide = swiper.slides[swiper.activeIndex];
+        var textWrap = activeSlide.querySelector(".text_wrap");
 
-  $(".left_menu ul li a").click(function () {
-    // 모든 메뉴 항목의 강조 효과를 제거합니다.
-    $(".left_menu ul li a").removeClass("active");
-
-    // 클릭한 메뉴 항목에 강조 효과를 추가합니다.
-    $(this).addClass("active");
-
-    // "-"을 추가하는 부분입니다.
-    $(".left_menu ul li a").each(function () {
-      var menuText = $(this).text();
-
-      // "-"을 추가할 조건을 검사합니다.
-      if ($(this).hasClass("active") && !menuText.startsWith("-")) {
-        $(this).prepend("- ");
-      } else if (!$(this).hasClass("active") && menuText.startsWith("-")) {
-        $(this).text(menuText.substring(2));
-      }
-    });
-  });
-
-  // 세로 스크롤 이벤트 처리
-  var scrollFlag = false; // 스크롤 동작 여부를 나타내는 플래그
-  var scrollTimeout = null; // 스크롤 타임아웃
-  var scrollDistance = $(window).height(); // 이동할 거리를 현재 창의 높이로 설정
-  var currentPosition = 0; // 현재 위치
-
-  $(window).on("scroll", function () {
-    if (!scrollFlag) {
-      scrollFlag = true;
-
-      clearTimeout(scrollTimeout); // 기존의 스크롤 타임아웃을 제거합니다.
-
-      scrollTimeout = setTimeout(function () {
-        scrollFlag = false;
-      }, 1000); // 1초 동안 스크롤 동작을 막습니다.
-
-      var scrollPos = $(window).scrollTop();
-
-      if (scrollPos > currentPosition) {
-        scrollToNextSection();
-      } else if (scrollPos < currentPosition) {
-        scrollToPreviousSection();
-      }
-
-      currentPosition = scrollPos;
-    }
-  });
-
-  var isAnimating = false; // 애니메이션 진행 여부를 나타내는 플래그
-
-  function scrollToNextSection() {
-    if (isAnimating) return; // 애니메이션이 진행 중인 경우, 무시합니다.
-
-    var scrollPos = $(window).scrollTop();
-    var nextSectionTop = Math.ceil(scrollPos / scrollDistance) * scrollDistance;
-
-    isAnimating = true; // 애니메이션 시작
-
-    $("html, body").animate({ scrollTop: nextSectionTop }, 500, function () {
-      isAnimating = false; // 애니메이션 종료 후 플래그를 false로 설정
-      currentPosition = nextSectionTop; // 현재 위치를 다음 섹션의 위치로 업데이트
-
-      updateActiveMenuItem();
-    });
-  }
-
-  function scrollToPreviousSection() {
-    if (isAnimating) return; // 애니메이션이 진행 중인 경우, 무시합니다.
-
-    var scrollPos = $(window).scrollTop();
-    var previousSectionTop = Math.floor(scrollPos / scrollDistance) * scrollDistance;
-
-    isAnimating = true; // 애니메이션 시작
-
-    $("html, body").animate({ scrollTop: previousSectionTop }, 500, function () {
-      isAnimating = false; // 애니메이션 종료 후 플래그를 false로 설정
-      currentPosition = previousSectionTop; // 현재 위치를 이전 섹션의 위치로 업데이트
-
-      updateActiveMenuItem();
-    });
-  }
-
-  function updateActiveMenuItem() {
-    var scrollPos = $(window).scrollTop();
-
-    $(".left_menu ul li a").each(function () {
-      var target = $(this.hash);
-
-      if (target.length) {
-        var sectionTop = target.offset().top;
-
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + target.outerHeight()) {
-          $(".left_menu ul li a").removeClass("active");
-          $(this).addClass("active");
-
-          $(".left_menu ul li a").each(function () {
-            var menuText = $(this).text();
-
-            if ($(this).hasClass("active") && !menuText.startsWith("-")) {
-              $(this).prepend("- ");
-            } else if (!$(this).hasClass("active") && menuText.startsWith("-")) {
-              $(this).text(menuText.substring(2));
-            }
-          });
+        if (textWrap) {
+          textWrap.style.display = "block";
+          activeSlide.classList.add("active");
         }
-      }
-    });
-  }
 
-  var $window = $(window);
-  var $fixedMenu = $(".fixed-menu");
-  var previousPosition = 0; // 이전 위치 저장 변수
+        var allSlides = swiper.slides;
+        if (swiper.isEnd) {
+          var lastSlide = swiper.slides[swiper.slides.length - 1];
+          lastSlide.classList.add("swiper-slide-active");
+          var lastTextWrap = lastSlide.querySelector(".text_wrap");
+          if (lastTextWrap) {
+            lastTextWrap.style.display = "block";
+          }
+        }
+      },
+      slideChange: function () {
+        var swiper = this;
+        var activeSlide = swiper.slides[swiper.activeIndex];
+        var textWrap = activeSlide.querySelector(".text_wrap");
 
-  // 스크롤 이벤트 처리
-  $window.on("scroll", function () {
-    var scrollTop = $window.scrollTop();
+        var allSlides = swiper.slides;
+        allSlides.forEach(function (slide) {
+          slide.classList.remove("active");
+        });
 
-    if (scrollTop >= previousPosition) {
-      $fixedMenu.addClass("active");
-    } else {
-      $fixedMenu.removeClass("active");
+        var allTextWraps = document.querySelectorAll(".text_wrap");
+        allTextWraps.forEach(function (textWrap) {
+          textWrap.style.display = "none";
+        });
+
+        if (textWrap) {
+          textWrap.style.display = "block";
+          activeSlide.classList.add("active");
+        }
+      },
+    },
+  });
+});
+
+// 초기에 첫 번째 메뉴 항목에 강조 효과를 추가하고 "-"을 추가합니다.
+$(".left_menu ul li:first-child a").addClass("active").prepend("- ");
+
+$(".left_menu ul li a").click(function () {
+  // 모든 메뉴 항목의 강조 효과를 제거합니다.
+  $(".left_menu ul li a").removeClass("active");
+
+  // 클릭한 메뉴 항목에 강조 효과를 추가합니다.
+  $(this).addClass("active");
+
+  // "-"을 추가하는 부분입니다.
+  $(".left_menu ul li a").each(function () {
+    var menuText = $(this).text();
+
+    // "-"을 추가할 조건을 검사합니다.
+    if ($(this).hasClass("active") && !menuText.startsWith("-")) {
+      $(this).prepend("- ");
+    } else if (!$(this).hasClass("active") && menuText.startsWith("-")) {
+      $(this).text(menuText.substring(2));
+    }
+  });
+});
+
+// 세로 스크롤 이벤트 처리
+var scrollFlag = false; // 스크롤 동작 여부를 나타내는 플래그
+var scrollTimeout = null; // 스크롤 타임아웃
+var scrollDistance = $(window).height(); // 이동할 거리를 현재 창의 높이로 설정
+var currentPosition = 0; // 현재 위치
+
+$(window).on("scroll", function () {
+  if (!scrollFlag) {
+    scrollFlag = true;
+
+    clearTimeout(scrollTimeout); // 기존의 스크롤 타임아웃을 제거합니다.
+
+    scrollTimeout = setTimeout(function () {
+      scrollFlag = false;
+    }, 1000); // 1초 동안 스크롤 동작을 막습니다.
+
+    var scrollPos = $(window).scrollTop();
+
+    if (scrollPos > currentPosition) {
+      scrollToNextSection();
+    } else if (scrollPos < currentPosition) {
+      scrollToPreviousSection();
     }
 
-    previousPosition = scrollTop;
+    currentPosition = scrollPos;
+  }
+});
+
+var isAnimating = false; // 애니메이션 진행 여부를 나타내는 플래그
+
+function scrollToNextSection() {
+  if (isAnimating) return; // 애니메이션이 진행 중인 경우, 무시합니다.
+
+  var scrollPos = $(window).scrollTop();
+  var nextSectionTop = Math.ceil(scrollPos / scrollDistance) * scrollDistance;
+
+  isAnimating = true; // 애니메이션 시작
+
+  $("html, body").animate({ scrollTop: nextSectionTop }, 500, function () {
+    isAnimating = false; // 애니메이션 종료 후 플래그를 false로 설정
+    currentPosition = nextSectionTop; // 현재 위치를 다음 섹션의 위치로 업데이트
 
     updateActiveMenuItem();
   });
+}
 
-  $("a[href^='#']").click(function () {
-    if (isAnimating) return; // 애니메이션이 진행 중인 경우, 무시합니다.
+function scrollToPreviousSection() {
+  if (isAnimating) return; // 애니메이션이 진행 중인 경우, 무시합니다.
 
+  var scrollPos = $(window).scrollTop();
+  var previousSectionTop = Math.floor(scrollPos / scrollDistance) * scrollDistance;
+
+  isAnimating = true; // 애니메이션 시작
+
+  $("html, body").animate({ scrollTop: previousSectionTop }, 500, function () {
+    isAnimating = false; // 애니메이션 종료 후 플래그를 false로 설정
+    currentPosition = previousSectionTop; // 현재 위치를 이전 섹션의 위치로 업데이트
+
+    updateActiveMenuItem();
+  });
+}
+
+function updateActiveMenuItem() {
+  var scrollPos = $(window).scrollTop();
+
+  $(".left_menu ul li a").each(function () {
     var target = $(this.hash);
 
     if (target.length) {
-      isAnimating = true; // 애니메이션 시작
+      var sectionTop = target.offset().top;
 
-      $("html, body").animate({ scrollTop: target.offset().top }, 500, function () {
-        isAnimating = false; // 애니메이션 종료 후 플래그를 false로 설정
-        currentPosition = target.offset().top; // 현재 위치를 대상 섹션의 위치로 업데이트
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + target.outerHeight()) {
+        $(".left_menu ul li a").removeClass("active");
+        $(this).addClass("active");
 
-        updateActiveMenuItem();
-      });
+        $(".left_menu ul li a").each(function () {
+          var menuText = $(this).text();
 
-      return false;
+          if ($(this).hasClass("active") && !menuText.startsWith("-")) {
+            $(this).prepend("- ");
+          } else if (!$(this).hasClass("active") && menuText.startsWith("-")) {
+            $(this).text(menuText.substring(2));
+          }
+        });
+      }
     }
   });
+}
+
+var $window = $(window);
+var $fixedMenu = $(".fixed-menu");
+var previousPosition = 0; // 이전 위치 저장 변수
+
+// 스크롤 이벤트 처리
+$window.on("scroll", function () {
+  var scrollTop = $window.scrollTop();
+
+  if (scrollTop >= previousPosition) {
+    $fixedMenu.addClass("active");
+  } else {
+    $fixedMenu.removeClass("active");
+  }
+
+  previousPosition = scrollTop;
+
+  updateActiveMenuItem();
+});
+
+$("a[href^='#']").click(function () {
+  if (isAnimating) return; // 애니메이션이 진행 중인 경우, 무시합니다.
+
+  var target = $(this.hash);
+
+  if (target.length) {
+    isAnimating = true; // 애니메이션 시작
+
+    $("html, body").animate({ scrollTop: target.offset().top }, 500, function () {
+      isAnimating = false; // 애니메이션 종료 후 플래그를 false로 설정
+      currentPosition = target.offset().top; // 현재 위치를 대상 섹션의 위치로 업데이트
+
+      updateActiveMenuItem();
+    });
+
+    return false;
+  }
 });
 $(document).ready(function () {
   function adjustImageURL() {
@@ -233,4 +286,22 @@ $(document).ready(function () {
   $(window).resize(function () {
     adjustImageURL();
   });
+});
+
+document.addEventListener("scroll", function () {
+  var contentsSe2 = document.querySelector(".contents_se2");
+  var prodectAbout = document.querySelector(".prodectAbout");
+
+  var contentsSe2Position = contentsSe2.getBoundingClientRect().top;
+  var prodectAboutPosition = prodectAbout.getBoundingClientRect().top;
+
+  var windowHeight = window.innerHeight;
+
+  if (contentsSe2Position < windowHeight) {
+    contentsSe2.classList.add("animated");
+  }
+
+  if (prodectAboutPosition < windowHeight) {
+    prodectAbout.classList.add("animated");
+  }
 });

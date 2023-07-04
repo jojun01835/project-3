@@ -2,6 +2,10 @@
 
 body {
   font-family: "NotoSansKR";
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 
 a:hover {
@@ -442,12 +446,16 @@ a:hover {
 .wrap_body1 {
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
 }
 .section4 {
   height: 100vh;
   width: 100%;
   background: rgb(255, 255, 255);
   z-index: 1;
+  display: flex;
+  align-items: center;
 }
 .cont50 {
   width: 50%;
@@ -456,6 +464,14 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.cont50-2 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  z-index: 880;
+  align-items: center;
+  justify-content: center;
 }
 
 .cont50 .title {
@@ -531,6 +547,79 @@ a:hover {
   top: -10px;
   background: #ffdf43;
 }
+.swiper-slide-active .img_list {
+  height: 66%;
+}
+.cont50-2 .swiper {
+  height: 100%;
+}
+.cont50-2 .swiper-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* 이미지가 넘치지 않도록 영역을 벗어나는 부분을 숨깁니다. */
+}
+
+.cont50-2 .swiper-slide img {
+  width: 50% !important; /* 이미지를 슬라이드 영역에 가득 채우기 위해 너비를 100%로 설정합니다. */
+  height: 50% !important; /* 이미지의 높이는 자동으로 조정됩니다. */
+  object-fit: cover !important; /* 이미지 비율을 유지하며 영역에 맞게 조정합니다. */
+}
+.img_list {
+  width: 80%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  border: 1px solid #aaa;
+  align-content: center;
+  border-radius: 5%;
+}
+.text_wrap {
+  padding: 8%;
+  display: block;
+  border-collapse: collapse;
+  width: 100%;
+  height: 40%;
+  line-height: 50%;
+  text-align: left;
+  background: #f4f6f8;
+  border-radius: 0 0 13% 13%;
+  display: none;
+}
+.title_pro {
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.title_pro1 {
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  margin-top: 5px;
+}
+.pro_content {
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  margin-top: 25px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  top: 20%;
+  left: 55%;
+  color: #363636;
+}
+.swiper-button-next {
+  margin-left: 70px;
+}
 .section5 {
   height: 100vh;
   width: 100%;
@@ -551,6 +640,22 @@ a:hover {
   font-weight: bold;
   color: #000;
   /* 추가적인 스타일 지정 가능 */
+}
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contents_se2,
+.prodectAbout {
+  opacity: 0;
+  animation: slideInUp 0.5s ease-in-out forwards;
 }
 
 @media screen and (max-width: 760px) {
