@@ -1,0 +1,560 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+body {
+  font-family: "NotoSansKR";
+}
+
+a:hover {
+  text-decoration: underline;
+}
+.depth1 {
+  text-decoration: none !important;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.container nav {
+  position: fixed;
+  width: 100%;
+  background: transparent;
+  height: 6.25rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+}
+.container nav > ul {
+  display: flex;
+  height: 6.25rem;
+  justify-content: center;
+  overflow: hidden;
+  transition: height 0.4s;
+  background: transparent;
+  z-index: 9999;
+}
+.depth1 {
+  display: block;
+  padding: 42px 40px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  font-size: 1rem;
+  z-index: 9999;
+}
+.container nav > ul > li > ul > li > a {
+  display: block;
+  padding: 10px 35px 15px 38px;
+  line-height: 20px;
+  text-align: center;
+  height: 20px;
+  font-size: 0.75rem;
+  z-index: 9999;
+}
+
+.container nav > ul > li > ul > li {
+  padding-top: 5px;
+}
+.contents {
+  width: 100%;
+}
+
+.sub-shadow {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  background: #fff;
+  z-index: 10;
+  top: 6.25rem;
+  left: 0;
+}
+.sub-shadow.active {
+  height: 9.375rem;
+}
+.container nav > ul > li > ul {
+  height: 0;
+}
+.container nav > ul > li:hover > ul {
+  height: 6.25rem;
+}
+
+.container nav > ul.active {
+  height: 15.625rem;
+}
+.depth li {
+  position: relative;
+}
+.depth.active {
+  height: 15.625rem;
+}
+
+.depth1:after {
+  /*after 가상요소*/
+  display: block; /*a요소를 블록 요소라고 선언*/
+  width: 50%;
+  content: "";
+  position: absolute;
+  top: 100px;
+  border-bottom: solid 1px #000000;
+  transform: translate(-50%, 0);
+  transform: scaleX(0); /*크기를 0으로 줌으로써 평상시엔 밑줄 없음*/
+  transition: transform 0.2s ease; /*변형 방식*/
+}
+.d3::after {
+  /*after 가상요소*/
+  display: block; /*a요소를 블록 요소라고 선언*/
+  width: 50%;
+  content: "";
+  position: absolute;
+  top: 100px;
+  left: 32px;
+  border-bottom: solid 1px #000000;
+  transform: translate(-50%, 0);
+  transform: scaleX(0); /*크기를 0으로 줌으로써 평상시엔 밑줄 없음*/
+  transition: transform 0.2s ease; /*변형 방식*/
+}
+.depth1:hover:after {
+  transform: scaleX(0.8); /*a 속성에 hover시 기존 크기로*/
+}
+
+.logo {
+  margin-left: 8%;
+}
+.logo img {
+  width: 12.5rem;
+  height: 2.75rem;
+  margin-top: 0.9375rem;
+}
+
+.nav_sns li img {
+  width: 2.0625rem;
+  height: 2.0625rem;
+  border: 3px solid #000;
+  border-radius: 50%;
+  padding: 3px;
+  display: block;
+  text-align: center;
+  align-items: center;
+}
+.nav_sns li {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.nav_sns li:nth-child(1):hover {
+  background: #fdd000;
+}
+.nav_sns li:nth-child(2):hover {
+  background: #fdd000;
+}
+.nav_sns li:nth-child(3):hover {
+  background: #fdd000;
+}
+.nav_sns {
+  margin-top: 1.5%;
+  margin-right: 5%;
+  width: 300px !important;
+}
+
+.menu-trigger,
+.menu-trigger span {
+  display: none;
+  transition: all 0.4s;
+  box-sizing: border-box;
+}
+
+.menu-trigger {
+  margin-top: 30%;
+  margin-left: 3%;
+  position: relative;
+  width: 22px;
+  height: 22px;
+}
+
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background-color: #000000;
+  border-radius: 4px;
+}
+
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
+}
+
+.menu-trigger span:nth-of-type(2) {
+  top: 5px;
+}
+
+.menu-trigger span:nth-of-type(3) {
+  bottom: 10px;
+}
+
+/* type-01 */
+/* 중앙 라인이 고정된 자리에서 투명하게 사라지며 상하라인 회전하며 엑스자 만들기 */
+/* .menu-trigger.active-1 span:nth-of-type(1) {
+  top: 5px;
+  transform: translateY(0px) rotate(-45deg);
+}
+
+.menu-trigger.active-1 span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(3) {
+  top: 15px;
+  transform: translateY(-10px) rotate(45deg);
+} */
+.side_wrap {
+  position: relative;
+  width: 100%;
+  position: fixed;
+  left: 100%;
+  z-index: 9999;
+}
+.right_sied_menu {
+  background: #222;
+  padding: 60px;
+  z-index: 1;
+}
+.logo_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logo_n {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.logo_n img {
+  width: 200px;
+  height: 40px;
+}
+.menu_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.menu-trigger2 span {
+  position: absolute;
+  right: 10%;
+  width: 22px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.menu-trigger2 span:nth-of-type(1) {
+  top: 0;
+  transform: translateY(0px) rotate(-45deg);
+}
+
+.menu-trigger2 span:nth-of-type(2) {
+  top: 5px;
+  transform: translateY(-5px) rotate(45deg);
+}
+
+.menu_wrap > li {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  justify-content: flex-start;
+  align-items: baseline;
+  vertical-align: top;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.menu_wrap > li > a {
+  width: 200px;
+  font-weight: bold;
+  font-size: 1.0625rem;
+  align-items: baseline;
+  color: #fff;
+}
+.depth2 li {
+  width: 7.125rem;
+  height: 1.25rem;
+  font-size: 0.875rem;
+  margin-bottom: 5px;
+}
+.depth2 li a {
+  color: #aaa;
+}
+.section1 {
+  position: fixed;
+  top: 30%;
+  right: 2%;
+  z-index: 50;
+}
+.section1 ul li {
+  padding: 10px;
+  text-align: center;
+  background: #000;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  position: relative;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.section1 ul li a {
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  transform: translate(-50%, 30%);
+  color: #fff;
+  text-align: center;
+}
+.section1 ul li a div {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+.under_t {
+  display: inline-block;
+  margin-top: 5px;
+  width: 100px;
+  position: absolute;
+  transform: translate(-50%, 30%);
+  font-weight: bold;
+  font-size: 16px;
+}
+.img_slider {
+  width: 100%;
+  height: 100vh;
+}
+.section3 {
+  width: 100%;
+  height: 969px;
+  position: absolute;
+  top: 969px;
+}
+
+@media screen and (max-width: 1280px) {
+  body {
+    position: none;
+    width: 100%;
+    left: 0;
+    padding-top: 0 !important;
+    margin-left: 0;
+    font-size: 13px;
+  }
+  .container nav {
+    height: 80px;
+  }
+  nav > ul > li:not(.nav_sns li) {
+    display: none;
+  }
+  .menu-trigger,
+  .menu-trigger span {
+    display: inline-block;
+    margin-right: 0;
+  }
+  .container nav > ul {
+    height: 5rem;
+  }
+  .nav_sns {
+    margin-top: 1%;
+    margin-right: 0;
+  }
+  .logo img {
+    height: 40px;
+  }
+  .logo {
+    margin-top: 0.1%;
+    margin-right: 0;
+    margin-left: 1%;
+  }
+
+  .swiper-slide {
+    height: 100%;
+  }
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-slide img {
+  width: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  height: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination-bullet {
+  width: 20px !important;
+  height: 8px !important;
+  background: #fff !important;
+  border-radius: 100px !important;
+  opacity: 0.3 !important;
+}
+.swiper-pagination-bullet-active {
+  width: 48px !important;
+  border-radius: 5px !important;
+  opacity: 1 !important;
+}
+
+.left_menu {
+  position: fixed;
+  bottom: 5%;
+  left: 2%;
+  z-index: 60;
+}
+.left_menu li {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.left_menu li a {
+  color: #c8c8bf;
+  text-decoration: none;
+}
+
+.wrap_body1 {
+  width: 100%;
+  height: 100vh;
+}
+.section4 {
+  height: 100vh;
+  width: 100%;
+  background: rgb(255, 255, 255);
+}
+.section5 {
+  height: 100vh;
+  width: 100%;
+  background: rgb(61, 192, 67);
+}
+.section6 {
+  height: 100vh;
+  width: 100%;
+  background: rgb(233, 19, 4);
+}
+.footer {
+  height: 100vh;
+  width: 100%;
+  background: rgb(4, 199, 233);
+}
+
+.left_menu ul li a.active {
+  font-weight: bold;
+  color: #000;
+  /* 추가적인 스타일 지정 가능 */
+}
+
+@media screen and (max-width: 760px) {
+  .container nav {
+    height: 40px;
+    justify-content: space-between;
+  }
+  .logo img {
+    width: 150px;
+    height: 30px;
+  }
+  .logo {
+    margin-top: -1.5%;
+    margin-right: 0;
+    margin-left: 1%;
+  }
+  .nav_sns li img {
+    display: none;
+  }
+  .nav_sns li:not(:last-child) {
+    display: none;
+  }
+  .openBtn {
+    position: absolute;
+    top: 0px;
+    right: 0%;
+  }
+
+  .side_wrap {
+    position: relative;
+    width: 100%;
+    position: fixed;
+    left: 0%;
+  }
+  .right_sied_menu {
+    background: #222;
+    padding: 50px;
+    z-index: 1;
+  }
+  .logo_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .logo_n {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .logo_n img {
+    width: 200px;
+    height: 40px;
+  }
+  .menu_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  .menu-trigger2 span {
+    position: absolute;
+    right: 10%;
+    width: 22px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+
+  .menu-trigger2 span:nth-of-type(1) {
+    top: 0;
+    transform: translateY(0px) rotate(-45deg);
+  }
+
+  .menu-trigger2 span:nth-of-type(2) {
+    top: 5px;
+    transform: translateY(-5px) rotate(45deg);
+  }
+
+  .swiper-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    background-position: center center !important;
+    background-size: cover !important;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+}
