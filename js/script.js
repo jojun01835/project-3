@@ -26,12 +26,23 @@ $(document).ready(function () {
     }
   );
 
+  var isSideMenuOpen = false; // 사이드 메뉴가 열려있는지 여부를 나타내는 플래그
+
   $(".openBtn").click(function () {
     $(".side_wrap").stop().animate({ left: 0 }, 500);
+    isSideMenuOpen = true;
   });
 
   $(".closeBtn").click(function () {
     $(".side_wrap").stop().animate({ left: "100%" }, 500);
+    isSideMenuOpen = false;
+  });
+
+  // 스크롤 이벤트 핸들러
+  $(window).on("scroll", function () {
+    if (isSideMenuOpen) {
+      return false; // 사이드 메뉴가 열려있을 때는 스크롤 이벤트 동작하지 않도록 false를 반환
+    }
   });
 
   var swiper = new Swiper(".mySwiper", {
@@ -197,14 +208,14 @@ $(document).ready(function () {
 
     // 클래스 이름과 이미지 URL을 매핑하는 객체 생성
     var imageMap = {
-      img1: windowWidth <= 720 ? "./img/BG_main_m.jpg" : "./img/BG-main.jpg",
-      img2: windowWidth <= 720 ? "./img/BG_m1.jpg" : "./img/BG_swiper1.jpg",
-      img3: windowWidth <= 720 ? "./img/BG_m2.jpg" : "./img/BG_swiper2.jpg",
-      img4: windowWidth <= 720 ? "./img/BG_m3.jpg" : "./img/BG_swiper3.jpg",
-      img5: windowWidth <= 720 ? "./img/BG_m4.jpg" : "./img/BG_swiper4.jpg",
-      img6: windowWidth <= 720 ? "./img/BG_m5.jpg" : "./img/BG_swiper5.jpg",
-      img7: windowWidth <= 720 ? "./img/BG_m6.jpg" : "./img/BG_swiper6.jpg",
-      img8: windowWidth <= 720 ? "./img/BG_m7.jpg" : "./img/BG_swiper7.jpg",
+      img1: windowWidth <= 760 ? "./img/BG_main_m.jpg" : "./img/BG-main.jpg",
+      img2: windowWidth <= 760 ? "./img/BG_m1.jpg" : "./img/BG_swiper1.jpg",
+      img3: windowWidth <= 760 ? "./img/BG_m2.jpg" : "./img/BG_swiper2.jpg",
+      img4: windowWidth <= 760 ? "./img/BG_m3.jpg" : "./img/BG_swiper3.jpg",
+      img5: windowWidth <= 760 ? "./img/BG_m4.jpg" : "./img/BG_swiper4.jpg",
+      img6: windowWidth <= 760 ? "./img/BG_m5.jpg" : "./img/BG_swiper5.jpg",
+      img7: windowWidth <= 760 ? "./img/BG_m6.jpg" : "./img/BG_swiper6.jpg",
+      img8: windowWidth <= 760 ? "./img/BG_m7.jpg" : "./img/BG_swiper7.jpg",
       // 나머지 이미지들도 동일한 방식으로 추가
     };
 
