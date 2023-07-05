@@ -319,34 +319,11 @@ $(document).ready(function () {
 
     // 섹션의 하단이 화면 중앙에 도달하면 애니메이션 작동
     if (scrollHeight + windowHeight >= sectionOffset + sectionHeight / 2) {
+      $(".contents_se2").addClass("animate");
       $(".prodectAbout").addClass("animate");
-      $(".contents_se2").addClass("before-width-100").delay(200);
     } else {
+      $(".contents_se2").removeClass("animate");
       $(".prodectAbout").removeClass("animate");
-      $(".contents_se2").addClass("before-width-100").delay(200);
-    }
-    var windowHeight1 = $(window).height();
-    var scrollHeight1 = $(window).scrollTop();
-
-    // 특정 섹션에 대한 정보
-    var sectionOffset1 = $(".section5").offset().top;
-    var sectionHeight1 = $(".section5").outerHeight();
-
-    // 섹션의 하단이 화면 중앙에 도달하면 애니메이션 작동
-    if (scrollHeight1 + windowHeight1 >= sectionOffset1 + sectionHeight1 / 2) {
-      $(".text_cell").addClass("animate");
-      $(".cell50").addClass("before-width-63");
-
-      $(".celltit").addClass("animate");
-      $(".celltit1").addClass("animate");
-      $(".celltit2").addClass("animate");
-    } else {
-      $(".text_cell").removeClass("animate");
-
-      $(".cell50").removeClass("before-width-63");
-      $(".celltit").removeClass("animate");
-      $(".celltit1").removeClass("animate");
-      $(".celltit2").removeClass("animate");
     }
   });
 });
