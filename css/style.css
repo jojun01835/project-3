@@ -626,6 +626,15 @@ a:hover {
   justify-content: center;
   align-items: center;
 }
+.cell50-2 {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
 .text_cell {
   width: 50%;
   display: block;
@@ -835,6 +844,12 @@ a:hover {
   .cell50 h2 {
     font-size: 50px;
   }
+  .cell50 {
+    width: 70%;
+  }
+  .cell50-2 {
+    width: 30%;
+  }
 }
 
 @media screen and (max-width: 760px) {
@@ -972,5 +987,49 @@ a:hover {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+  }
+  .section5 {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cell50 {
+    height: 50vh;
+  }
+  .cell50-2 {
+    height: 50vh;
+  }
+  .text_cell {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .cell50 h2 {
+    width: 100%;
+    font-size: 34px;
+  }
+  .celltit strong {
+    font-size: 32px;
+  }
+  .celltit {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .celltit span {
+    font-size: 14px;
+  }
+  .celltit1 {
+    margin-bottom: 30px;
+    font-size: 12px;
+    width: 100%;
+  }
+  .celltit1 strong {
+    font-size: 12px;
+  }
+  .celltit1 span {
+    font-size: 12px;
+  }
+  .celltit2 {
+    width: 100%;
+    font-size: 12px;
   }
 }
