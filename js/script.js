@@ -321,9 +321,11 @@ $(document).ready(function () {
     if (scrollHeight + windowHeight >= sectionOffset + sectionHeight / 2) {
       $(".prodectAbout").addClass("animate");
       $(".contents_se2").addClass("before-width-100").delay(200);
+      $("nav").css({ background: "white" });
     } else {
       $(".prodectAbout").removeClass("animate");
       $(".contents_se2").addClass("before-width-100").delay(200);
+      $("nav").css({ background: "transparent" });
     }
     var windowHeight1 = $(window).height();
     var scrollHeight1 = $(window).scrollTop();
@@ -336,17 +338,68 @@ $(document).ready(function () {
     if (scrollHeight1 + windowHeight1 >= sectionOffset1 + sectionHeight1 / 2) {
       $(".text_cell").addClass("animate");
       $(".cell50").addClass("before-width-63");
-
+      $("nav").css({ background: "white" });
       $(".celltit").addClass("animate");
       $(".celltit1").addClass("animate");
       $(".celltit2").addClass("animate");
     } else {
       $(".text_cell").removeClass("animate");
-
+      $("nav").css({ background: "transparent" });
       $(".cell50").removeClass("before-width-63");
       $(".celltit").removeClass("animate");
       $(".celltit1").removeClass("animate");
       $(".celltit2").removeClass("animate");
+    }
+
+    var windowHeight2 = $(window).height();
+    var scrollHeight2 = $(window).scrollTop();
+
+    // 특정 섹션에 대한 정보
+    var sectionOffset2 = $(".section6").offset().top;
+    var sectionHeight2 = $(".section6").outerHeight();
+
+    // 섹션의 하단이 화면 중앙에 도달하면 애니메이션 작동
+    if (scrollHeight2 + windowHeight2 >= sectionOffset2 + sectionHeight2 / 2) {
+      $(".sec6_cell_t").addClass("animate");
+      $(".sec6_cell_tm").addClass("before-width-80");
+      $("nav").css({ background: "white" });
+      $(".sec6_c").addClass("animate");
+      $(".sec6_c2").addClass("animate");
+    } else {
+      $(".sec6_cell_t").removeClass("animate");
+      $(".sec6_cell_tm").removeClass("before-width-80");
+      $("nav").css({ background: "white" });
+      $(".sec6_c").removeClass("animate");
+      $(".sec6_c2").removeClass("animate");
+    }
+
+    var windowHeight3 = $(window).height();
+    var scrollHeight3 = $(window).scrollTop();
+
+    // 특정 섹션에 대한 정보
+    var sectionOffset3 = $(".section6").offset().top;
+    var sectionHeight3 = $(".section6").outerHeight();
+
+    // 섹션의 하단이 화면 중앙에 도달하면 애니메이션 작동
+    if (scrollHeight3 + windowHeight3 >= sectionOffset3 + sectionHeight3 / 2) {
+      $("nav").css({ background: "white" });
+    } else {
+      $("nav").css({ background: "white" });
+    }
+    var windowHeight4 = $(window).height();
+    var scrollHeight4 = $(window).scrollTop();
+
+    // 특정 섹션에 대한 정보
+    var sectionOffset4 = $(".footer").offset().top;
+    var sectionHeight4 = $(".footer").outerHeight();
+
+    // 섹션의 하단이 화면 중앙에 도달하면 애니메이션 작동
+    if (scrollHeight4 + windowHeight4 >= sectionOffset4 + sectionHeight4 / 2) {
+      $("nav").css({ background: "white" });
+      $(".tit_under").addClass("before-width-100");
+    } else {
+      $("nav").css({ background: "white" });
+      $(".tit_under").removeClass("before-width-100");
     }
   });
 });
